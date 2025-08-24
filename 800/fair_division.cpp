@@ -3,25 +3,29 @@ using namespace std;
 
 int main() {
     int t;
-    cin >> t; 
+    cin >> t;
 
-    while(t--) {  
+    while (t--) {
         int n;
         cin >> n;
 
         vector<int> v(n);
-        unordered_map<int, int> mpp;
+        for (int i = 0; i < n; i++) cin >> v[i];
 
-        for(int i=0; i<n; i++) {
-            cin >> v[i];
-            mpp[v[i]]++;
+        sort(v.begin(), v.end(), greater<int>());
+
+        int aliceCandies = 0, bobCandies = 0;
+        for (int i = 0; i < n; i++)
+        {
+            if (i == 0) { aliceCandies += v[i]; continue; }
+
+            if (aliceCandies > bobCandies) bobCandies += v[i];
+            else aliceCandies += v[i];
         }
 
-        if(mpp[1] % 2 == 0 && mpp[2] % 2 == 0) cout << "YES" << endl;
-        else if (mpp[2] * 2  == mpp[1]) cout << "YES" << endl;
+        if (aliceCandies == bobCandies) cout << "YES" << endl;
         else cout << "NO" << endl;
+
     }
-
-
     return 0;
 }
