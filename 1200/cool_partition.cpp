@@ -1,50 +1,45 @@
-#include <iostream>
-#include <bits/stdc++.h>
+#include<bits/stdc++.h>
+
 using namespace std;
-
-bool checkPartition(vector<int> v, int pointOfPartition) {
-    vector<int> v1, v2;
-
-    // ✅ Use push_back instead of out-of-bounds indexing
-    for (int i = 0; i < pointOfPartition; i++) {
-        v1.push_back(v[i]);
-    }
-
-    for (int i = pointOfPartition; i < v.size(); i++) {
-        v2.push_back(v[i]);
-    }
-
-    for (int i = 0; i < v1.size(); i++) {
-        auto it = find(v2.begin(), v2.end(), v1[i]);
-        if (it != v2.end()) return true;
-    }
-
-    return false;
-}
 
 int main() {
     int t;
     cin >> t;
 
-    while (t--) {
+    while (t--)
+    {
         int n;
         cin >> n;
 
-        int ans = -1; // ✅ initialize
-        vector<int> v(n); // ✅ allocate memory for n elements
-        for (int i = 0; i < n; i++) {
-            cin >> v[i];
-        }
+        vector<int> v(n);
+        for (int i = 0; i < n; i++) cin >> v[i];
+
+        int segments = 0;
+        vector<int> segmentVector, lastSegment;
 
         for (int i = 0; i < n; i++) {
-            if (checkPartition(v, i)) continue;
+            // check if element exists in the remaining array
+            if (find(v.begin() + i + 1, v.end(), v[i]) != end(v)) {
+                // another element with the same value shouldn't enter the segment 
+                if (find(segmentVector.begin(), segmentVector.end(), v[i]) == end(segmentVector)) {
+                    segmentVector.push_back(v[i]);
+                }
+                else {
+                    segments++; // 1
+                    segmentVector.clear();
+                    segmentVector.push_back(v[i]);
+                }
+            }
+            // if a segment breaks and the next element does not match to the remaining array, the entire leftover array is a segment 
             else {
-                ans = i + 1; // ✅ since answer indexing is 1-based
+                segments++;
                 break;
             }
         }
 
-        cout << ans << endl;
+        cout << segments << endl;
     }
+
+
     return 0;
 }
