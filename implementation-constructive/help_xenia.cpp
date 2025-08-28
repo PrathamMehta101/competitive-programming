@@ -1,4 +1,3 @@
-#include<iostream>
 #include<bits/stdc++.h>
 using namespace std;
 
@@ -31,8 +30,26 @@ int main() {
     cin >> s;
 
     // take all numbers from s
-    // sort them
-    // print them separated by +
+        // all odd indices will be +
+    vector<int> numbers;
+    for (int i = 0; i < s.size(); i++) {
+        if (i % 2 == 0) numbers.push_back(s[i] - '0'); // trick to convert to integer
+    }
 
+    // sort them
+    sort(numbers.begin(), numbers.end());
+
+    // print them separated by +
+    string res = "";
+    for (int i = 0; i < numbers.size(); i++)
+    {
+        res += to_string(numbers[i]);
+        if (s.size() == 1 || i == numbers.size() - 1) break; // only 1 number or at last number
+        else {
+            res += "+";
+        }
+    }
+
+    cout << res << endl;
 
 }

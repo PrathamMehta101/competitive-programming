@@ -1,32 +1,32 @@
-#include<iostream>
-#include<algorithm>
-#include<vector>
-
+#include<bits/stdc++.h>
 using namespace std;
 
 int main() {
-    int n,k;
+    int n, k;
     cin >> n >> k;
-    
-    vector<int> v;
-    for(int i=0; i<n; i++) {
-        cin >> v[i];
+
+    vector<pair<int, int>> v;
+    vector<int> instruments;
+
+    int days = 0;
+
+    for (int i = 0; i < n; i++) {
+        int b;
+        cin >> b;
+        v.push_back({ b,i });
     }
 
-    int m = 0;
-    vector<int> res;
+    sort(v.begin(), v.end());
 
-    for(int i=0; i<n; i++) {
-        if(k <= 0) break;
-        k -= v[i];
-        m++;
-        res[i] = i;
+    for (int i = 0; i < n; i++) {
+        days += v[i].first;
+        if (days <= k) instruments.push_back(v[i].second);
     }
 
-    cout << m << endl;
+    cout << instruments.size() << endl;
 
-    for(int i=0; i<n; i++) {
-        cout << res[i];
+    for (int i = 0; i < instruments.size(); i++)
+    {
+        cout << instruments[i] + 1 << " ";
     }
-
 }
