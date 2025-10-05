@@ -17,7 +17,12 @@ int main() {
         int m = INT_MAX;
 
         for (int i = 0; i < n; i++) {
-            rem[i] = k - (v[i] % k);
+            if (v[i] % k != 0) {
+                rem[i] = k - (v[i] % k);
+            }
+            else {
+                rem[i] = 0;
+            }
             m = min(rem[i], m);
         }
 
