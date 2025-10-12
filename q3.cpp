@@ -1,23 +1,28 @@
 #include<bits/stdc++.h>
-#define ll long long 
 using namespace std;
 
-int coins = 0;
-
 int main() {
-    ll t;
+    int t;
     cin >> t;
+
     while (t--)
     {
-        int t;
-        cin >> t;
-        while (t--) {
-            int n;
-            cin >> n;
-            vector<int> v(n);
-            for (int i = 0; i < n; i++) cin >> v[i];
+        int n;
+        cin >> n;
+
+        string s;
+        cin >> s;
+
+
+        map<char, int> mpp;
+
+        for (int i = 0; i < n; i++) {
+            mpp[s[i]]++;
         }
+
+        int 
     }
+
 
     return 0;
 }
