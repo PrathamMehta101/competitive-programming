@@ -9,20 +9,7 @@ int main() {
     {
         int n;
         cin >> n;
-
-        string s;
-        cin >> s;
-
-
-        map<char, int> mpp;
-
-        for (int i = 0; i < n; i++) {
-            mpp[s[i]]++;
-        }
-
-        int 
     }
-
 
     return 0;
 }
