@@ -15,9 +15,22 @@ int main() {
     for (ll i = 1; i < n; i++) prefix[i] = prefix[i - 1] + a[i];
 
 
-    for (int i = 0; i < m; i++) {
-        int ln = b[i];
+    for (ll i = 0; i < m; i++) {
+        ll target = b[i];
+        ll low = 0, high = prefix.size() - 1;
+        ll ans = LONG_LONG_MAX;
+        while (low <= high) {
+            ll mid = (low + high) / 2;
+            if (prefix[mid] >= target) {
+                ans = mid;
+                high = mid - 1;
+            }
+            else low = mid + 1;
+        }
 
+        ll pdr = ans > 0 ? prefix[ans - 1] : prefix[ans];
+        ll room_numbers = ans > 0 ? target - pdr : target;
+        cout << ans + 1 << " " << room_numbers << endl;
     }
 
     /*
